@@ -21,10 +21,22 @@ body.dark-mode {
 
 .sidebar {
   max-width: 250px;
-  background-color: #2c3e50;
   padding: 20px;
   transition: max-width 0.3s ease;
   position: relative;
+}
+.sidebar .light-mode {
+  color: black;
+}
+
+.sidebar.dark-mode {
+  background-color: #484454;
+  color: white;
+}
+
+.sidebar.light-mode {
+  background-color: #fff;
+  color: black;
 }
 
 .sidebar.collapsed {
@@ -124,12 +136,16 @@ main {
 }
 
 .summary-card {
-  background-color: #fff;
+  border: 1px solid #fff;
   padding: 20px;
   width: 22%;
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card.dark-mode {
+  background-color: #484454;
 }
 
 .summary-card p {
@@ -152,15 +168,37 @@ main {
   border-radius: 4px;
 }
 
+thead.dark-mode {
+  background-color: #6a6676;
+  color: white;
+}
+
+thead.light-mode {
+  background-color: #f1f5f9;
+  color: #333;
+}
+
+eventchart.dark-mode, tbody.dark-mode {
+  background-color: #484454;
+  color: white;
+}
+
+eventchart.light-mode, tbody.light-mode {
+  background-color: #f1f5f9;
+  color: #333;
+}
+
 .event-news {
   display: flex;
   margin-top: 20px;
   justify-content: space-between;
 }
+.event-news .dark-mode {
+  background-color: #484454;
+}
 
 .event-chart,
 .news {
-  background-color: #fff;
   padding: 20px;
   width: 48%;
   border-radius: 8px;
@@ -186,7 +224,8 @@ table {
 
 table th,
 table td {
-  border: 1px solid #ccc;
+  border-collapse: collapse;
+  text-align: left;
   padding: 10px;
 }
 
@@ -259,6 +298,8 @@ table td {
   width: 50%;
   height: 400px;
   overflow: hidden;
+  border-radius: 8px;
+  background-color: #000;
 }
 .carousel-container[data-direction=next] .news.active {
   animation: slideInFromRight 0.8s forwards;
@@ -288,6 +329,25 @@ table td {
   color: white;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.indicators .indicator {
+  width: 30px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.indicators .active {
+  background-color: white;
 }
 
 @keyframes slideInFromRight {

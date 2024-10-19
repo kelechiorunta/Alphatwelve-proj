@@ -3,6 +3,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('theme-toggle');
     const body = document.body;
+    const theads = document.getElementsByTagName('thead');
+    const tbodys = document.getElementsByTagName('tbody');
+    const eventchart = document.querySelector('.event-chart');
+    const mysidebar = document.querySelector('.sidebar');
+    const summarycard = document.querySelectorAll('.summary-card');
+    const thead = theads[0];  // This gets the first <thead> element
+    const tbody = tbodys[0];  // This gets the first <tbody> element
+
   
     // JavaScript to handle the sidebar collapse/expand
     const toggleBtn = document.getElementById('toggle-btn');
@@ -16,15 +24,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       body.classList.toggle('dark-mode', savedTheme === 'dark');
+      thead.classList.toggle('dark-mode', savedTheme === 'dark');
+      tbody.classList.toggle('dark-mode', savedTheme === 'dark');
+      eventchart.classList.toggle('dark-mode', savedTheme === 'dark');
+      mysidebar.classList.toggle('dark-mode', savedTheme === 'dark');
+      summarycard.forEach(card=>{
+        card.classList.toggle('dark-mode', savedTheme === 'dark')});
       toggle.checked = savedTheme === 'dark';
     }
   
     toggle.addEventListener('change', function() {
       if (this.checked) {
         body.classList.add('dark-mode');
+        thead.classList.add('dark-mode');
+        tbody.classList.add('dark-mode');
+        eventchart.classList.add('dark-mode');
+        mysidebar.classList.add('dark-mode');
+        summarycard.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark');
       } else {
         body.classList.remove('dark-mode');
+        thead.classList.remove('dark-mode');
+        tbody.classList.remove('dark-mode');
+        eventchart.classList.remove('dark-mode');
+        mysidebar.classList.remove('dark-mode');
+        summarycard.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
       }
     });
@@ -100,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       document.addEventListener('DOMContentLoaded', () => {
         const slides = document.querySelectorAll('.carousel-container .news');
+        const indicators = document.querySelectorAll('.carousel-container .indicator');
         const prevButton = document.querySelector('.carousel-btn.prev');
         const nextButton = document.querySelector('.carousel-btn.next');
         const carouselContainer = document.querySelector('.carousel-container');
@@ -108,14 +133,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const slideInterval = 3000; // Time in milliseconds (3 seconds)
         let autoSlide;
       
+        function updateIndicators(index) {
+          indicators.forEach((indicator, i) => {
+            if (i === index) {
+              indicator.classList.add('active');
+            } else {
+              indicator.classList.remove('active');
+            }
+          });
+        }
+      
         function showSlide(index, direction) {
-          // Set the direction as a data attribute for CSS to use
           carouselContainer.setAttribute('data-direction', direction);
       
           slides.forEach((slide, i) => {
             if (i === index) {
-              slide.classList.remove('exit');
               slide.classList.add('active');
+              slide.classList.remove('exit');
             } else if (slide.classList.contains('active')) {
               slide.classList.remove('active');
               slide.classList.add('exit');
@@ -123,39 +157,51 @@ document.addEventListener('DOMContentLoaded', function() {
               slide.classList.remove('active', 'exit');
             }
           });
+      
+          // Update indicators to reflect current slide
+          updateIndicators(index);
         }
       
         function nextSlide() {
-          const previousSlide = currentSlide;
           currentSlide = (currentSlide + 1) % totalSlides; // Go to the next slide
           showSlide(currentSlide, 'next');
         }
       
         function prevSlide() {
-          const previousSlide = currentSlide;
           currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // Go to the previous slide
           showSlide(currentSlide, 'prev');
         }
       
         // Initial display of the first slide
-        showSlide(currentSlide, 'next'); // Default is 'next'
+        showSlide(currentSlide, 'next');
       
         // Auto-slide every few seconds
         autoSlide = setInterval(nextSlide, slideInterval);
       
         // Event listeners for the buttons
         nextButton.addEventListener('click', () => {
-          clearInterval(autoSlide); // Stop auto-sliding when manually controlled
-          nextSlide(); // Trigger next slide
-          autoSlide = setInterval(nextSlide, slideInterval); // Resume auto-sliding
+          clearInterval(autoSlide);
+          nextSlide();
+          autoSlide = setInterval(nextSlide, slideInterval);
         });
       
         prevButton.addEventListener('click', () => {
-          clearInterval(autoSlide); // Stop auto-sliding when manually controlled
-          prevSlide(); // Trigger previous slide
-          autoSlide = setInterval(nextSlide, slideInterval); // Resume auto-sliding
+          clearInterval(autoSlide);
+          prevSlide();
+          autoSlide = setInterval(nextSlide, slideInterval);
+        });
+      
+        // Add click event to indicators for manual selection
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            clearInterval(autoSlide);
+            currentSlide = index;
+            showSlide(currentSlide, 'next');
+            autoSlide = setInterval(nextSlide, slideInterval);
+          });
         });
       });
+      
       
       
       
