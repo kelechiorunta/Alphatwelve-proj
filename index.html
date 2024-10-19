@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-mode">
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Full Logo</div>
+        <nav class="menu">
+          <a href="#" id="home-link" class="active">
+            <i class="fas fa-home"></i> <span class="menu-text">Home</span>
+          </a>
+          <a href="#" id="events-link">
+            <i class="fas fa-calendar-alt"></i> <span class="menu-text">Events</span>
+          </a>
+          <a href="#" id="speakers-link">
+            <i class="fas fa-microphone"></i> <span class="menu-text">Speakers</span>
+          </a>
+          <a href="#" id="reports-link">
+            <i class="fas fa-file-alt"></i> <span class="menu-text">Reports</span>
+          </a>
+          <a href="#" id="notifications-link">
+            <i class="fas fa-bell"></i> <span class="menu-text">Notifications</span>
+          </a>
+          <a href="#" id="messages-link">
+            <i class="fas fa-envelope"></i> <span class="menu-text">Messages</span>
+          </a>
+          <a href="#" id="settings-link">
+            <i class="fas fa-cog"></i> <span class="menu-text">Settings</span>
+          </a>
+          <div 
+            id="toggle-btn"
+            class='toggle_container'>
+            <i class="fas fa-arrow-right"></i>
+            <button 
+                id="toggle-btn"
+                class='toggle-btn'>
+                 Collapse
+            </Button>
+        </div>
+         <div class="mode-switch">
+            <input type="checkbox" id="theme-toggle">
+            <label for="theme-toggle">Dark Mode</label>
+            
+          </div>
+        </nav>
+        
+      </aside>
+    <!-- Main Content -->
+    <main class="content">
+        <h1 class="welcome_title">Welcome! Here's your summary</h1>
+      <!-- Summary Section -->
+      <section class="summary">
+        <div class="summary-card">
+          <h3>Total Events</h3>
+          <p>100,000</p>
+        </div>
+        <div class="summary-card">
+          <h3>Total Speakers</h3>
+          <p>25</p>
+        </div>
+        <div class="summary-card">
+          <h3>Total Registrations</h3>
+          <p>300</p>
+        </div>
+        <div class="summary-card">
+          <h3>Total Revenue</h3>
+          <p>$500,000</p>
+        </div>
+      </section>
+
+      <!-- Event Registrations and News Section -->
+      <section class="event-news">
+        <div class="event-chart">
+          <h3>Event Registrations per Month</h3>
+          <canvas id="chart"></canvas>
+        </div>
+        <div class="carousel-container">
+            <div class="news" style="background-image: url('./images/image1.png');">
+              <h3>Latest News & Updates</h3>
+              <p>Turpis interdum nunc varius ornare dignissim pretium. Massa ornare quis aliquet sed vitae. Sed velit nisi, fermentum erat. Fringilla purus, erat fringilla tincidunt quisque non. Pellentesque in ut tellus.</p>
+            </div>
+            <div class="news" style="background-image: url('./images/image2.png');">
+              <h3>Latest News & Updates</h3>
+              <p>Turpis interdum nunc varius ornare dignissim pretium. Massa ornare quis aliquet sed vitae. Sed velit nisi, fermentum erat. Fringilla purus, erat fringilla tincidunt quisque non. Pellentesque in ut tellus.</p>
+            </div>
+            <div class="news" style="background-image: url('./images/image3.png');">
+              <h3>Latest News & Updates</h3>
+              <p>Turpis interdum nunc varius ornare dignissim pretium. Massa ornare quis aliquet sed vitae. Sed velit nisi, fermentum erat. Fringilla purus, erat fringilla tincidunt quisque non. Pellentesque in ut tellus.</p>
+            </div>
+            <!-- Navigation Buttons -->
+            <button class="carousel-btn prev">❮</button>
+            <button class="carousel-btn next">❯</button>
+          </div>
+          
+      </section>
+
+      <!-- Events History Section -->
+      <!-- <section class="events-history">
+        <h3>Events History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Speaker</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cloud Innovation Summit</td>
+              <td>2024-10-15</td>
+              <td>Jane Doe</td>
+              <td>Completed</td>
+            </tr> -->
+            <!-- More rows here -->
+          <!-- </tbody>
+        </table>
+      </section> -->
+
+      <section class="event-list-section">
+        <div class="event-list-header">
+          <h2>Events History</h2>
+          <div class="filter-controls">
+            <input type="text" id="search-input" placeholder="Search..." />
+            <select id="date-filter">
+              <option value="">Date</option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+            <select id="status-filter">
+              <option value="">Status</option>
+              <option value="completed">Completed</option>
+              <option value="in-progress">In Progress</option>
+            </select>
+            <select id="name-filter">
+              <option value="">Name</option>
+              <option value="Jane Doe">Jane Doe</option>
+              <option value="Dr. Peter Smith">Dr. Peter Smith</option>
+              <!-- Add more speaker names dynamically or manually -->
+            </select>
+            <span id="result-count">Displaying 100 results</span>
+            <button class="export-button">Export</button>
+          </div>
+        </div>
+      
+        <table class="event-table">
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Speaker</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cloud Innovation Summit</td>
+              <td>2024-10-15</td>
+              <td>Jane Doe</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+            <tr>
+              <td>Blockchain Revolution Conference</td>
+              <td>2024-11-05</td>
+              <td>Dr. Peter Smith</td>
+              <td><span class="status in-progress">In Progress</span></td>
+            </tr>
+            <tr>
+              <td>AI in HealthCare Symposium</td>
+              <td>2024-12-01</td>
+              <td>Dr. Aisha Malik</td>
+              <td><span class="status in-progress">Completed</span></td>
+            </tr>
+            <tr>
+                <td>Future of Fintech Forum</td>
+                <td>2024-10-25</td>
+                <td>John Lee</td>
+                <td><span class="status in-progress">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Data Analytics in Business</td>
+                <td>2024-11-12</td>
+                <td>Racheal Moore</td>
+                <td><span class="status in-progress">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Sustainable Enery Expo</td>
+                <td>2024-09-28</td>
+                <td>Prof. Alan Green</td>
+                <td><span class="status in-progress">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Web3 Interfaces Workshop</td>
+                <td>2024-10-10</td>
+                <td>Kevin Adams</td>
+                <td><span class="status in-progress">In Progress</span></td>
+              </tr>
+              <tr>
+                <td>Cybersecurity for Startups</td>
+                <td>2024-11-19</td>
+                <td>Emily Zhang</td>
+                <td><span class="status in-progress">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Smart Cities Forum</td>
+                <td>2024-10-18</td>
+                <td>Dr. Maria Hernandez</td>
+                <td><span class="status in-progress">In Progress</span></td>
+              </tr>
+              <tr>
+                <td>Tech Safari Mixer</td>
+                <td>2024-09-30</td>
+                <td>Guest Panel</td>
+                <td><span class="status in-progress">In Progress</span></td>
+              </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      
+        <div class="pagination-controls">
+          <button class="pagination-btn">&laquo;</button>
+          <span class="page-number">1</span>
+          <button class="pagination-btn">&raquo;</button>
+        </div>
+      </section>
+      
+      
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+<script>
+      // Event registrations per month data
+const ctx = document.getElementById('chart').getContext('2d');
+
+// Create the chart
+const eventChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Event Registrations',
+            data: [700, 900, 600, 1000, 950, 700, 550, 500, 650, 800, 950, 700],
+            backgroundColor: 'rgba(86, 99, 255, 0.7)', // Blue similar to the image
+            borderColor: 'rgba(86, 99, 255, 1)',
+            borderWidth: 1,
+            borderRadius: 4
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 200
+                }
+            }
+        },
+        responsive: true,
+        // maintainAspectRatio: false
+    }
+});
+</script>
+  
+  
+</body>
+</html>
