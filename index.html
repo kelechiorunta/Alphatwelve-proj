@@ -84,9 +84,11 @@
 
       <!-- Event Registrations and News Section -->
       <section class="event-news">
-        <div class="event-chart">
-          <h3>Event Registrations per Month</h3>
-          <canvas id="chart"></canvas>
+        <div class="chart-container">
+            <h3>Event Registrations per Month</h3>
+            <div class="event-chart">
+                <canvas id="chart"></canvas>
+            </div>
         </div>
         <div class="carousel-container">
             <div class="news" style="background-image: url('./images/image1.png');">
@@ -201,25 +203,25 @@
               <td>AI in HealthCare Symposium</td>
               <td>2024-12-01</td>
               <td>Dr. Aisha Malik</td>
-              <td><span class="status in-progress">Completed</span></td>
+              <td><span class="status completed">Completed</span></td>
             </tr>
             <tr>
                 <td>Future of Fintech Forum</td>
                 <td>2024-10-25</td>
                 <td>John Lee</td>
-                <td><span class="status in-progress">Completed</span></td>
+                <td><span class="status completed">Completed</span></td>
               </tr>
               <tr>
                 <td>Data Analytics in Business</td>
                 <td>2024-11-12</td>
                 <td>Racheal Moore</td>
-                <td><span class="status in-progress">Completed</span></td>
+                <td><span class="status completed">Completed</span></td>
               </tr>
               <tr>
                 <td>Sustainable Enery Expo</td>
                 <td>2024-09-28</td>
                 <td>Prof. Alan Green</td>
-                <td><span class="status in-progress">Completed</span></td>
+                <td><span class="status completed">Completed</span></td>
               </tr>
               <tr>
                 <td>Web3 Interfaces Workshop</td>
@@ -231,7 +233,7 @@
                 <td>Cybersecurity for Startups</td>
                 <td>2024-11-19</td>
                 <td>Emily Zhang</td>
-                <td><span class="status in-progress">Completed</span></td>
+                <td><span class="status completed">Completed</span></td>
               </tr>
               <tr>
                 <td>Smart Cities Forum</td>
@@ -273,10 +275,12 @@ const eventChart = new Chart(ctx, {
         datasets: [{
             label: 'Event Registrations',
             data: [700, 900, 600, 1000, 950, 700, 550, 500, 650, 800, 950, 700],
-            backgroundColor: 'rgba(86, 99, 255, 0.7)', // Blue similar to the image
+            backgroundColor: 'rgb(133,118,255)', // Blue similar to the image
+            // backgroundColor: 'rgba(86, 99, 255, 0.7)', // Blue similar to the image
             borderColor: 'rgba(86, 99, 255, 1)',
             borderWidth: 1,
-            borderRadius: 4
+            borderRadius: 4,
+            
         }]
     },
     options: {

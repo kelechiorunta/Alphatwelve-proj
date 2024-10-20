@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const eventchart = document.querySelector('.event-chart');
     const mysidebar = document.querySelector('.sidebar');
     const summarycard = document.querySelectorAll('.summary-card');
+    const inprogress = document.querySelectorAll('in-progress')
     const thead = theads[0];  // This gets the first <thead> element
     const tbody = tbodys[0];  // This gets the first <tbody> element
 
@@ -30,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
       mysidebar.classList.toggle('dark-mode', savedTheme === 'dark');
       summarycard.forEach(card=>{
         card.classList.toggle('dark-mode', savedTheme === 'dark')});
+      inprogress.forEach(item=>{
+        item.classList.toggle('dark-mode', savedTheme === 'dark')});
       toggle.checked = savedTheme === 'dark';
     }
   
@@ -41,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         eventchart.classList.add('dark-mode');
         mysidebar.classList.add('dark-mode');
         summarycard.classList.add('dark-mode');
+        inprogress.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark');
       } else {
         body.classList.remove('dark-mode');
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         eventchart.classList.remove('dark-mode');
         mysidebar.classList.remove('dark-mode');
         summarycard.classList.remove('dark-mode');
+        inprogress.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
       }
     });

@@ -50,7 +50,7 @@ body.dark-mode {
 main {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .logo {
@@ -122,7 +122,7 @@ main {
 
 .menu a.active,
 .menu a:hover {
-  background-color: #4b4b7f;
+  background-color: #8576ff;
 }
 
 .content {
@@ -133,6 +133,7 @@ main {
 .summary {
   display: flex;
   justify-content: space-between;
+  margin-top: -20px;
 }
 
 .summary-card {
@@ -142,6 +143,20 @@ main {
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.in-progress {
+  border: 1px solid #77b1ff;
+  color: #77b1ff;
+  padding: 2px 16px;
+  border-radius: 30px;
+}
+
+.completed {
+  border: 1px solid #5db49c;
+  color: #5db49c;
+  padding: 2px 16px;
+  border-radius: 30px;
 }
 
 .summary-card.dark-mode {
@@ -178,6 +193,19 @@ thead.light-mode {
   color: #333;
 }
 
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+  height: 500px;
+  margin-top: -42px;
+}
+.chart-container .event-chart {
+  width: 100%;
+  height: 400px;
+}
+
 eventchart.dark-mode, tbody.dark-mode {
   background-color: #484454;
   color: white;
@@ -190,8 +218,11 @@ eventchart.light-mode, tbody.light-mode {
 
 .event-news {
   display: flex;
+  width: 100%;
+  grid-template-columns: 100% 100%;
+  gap: 1rem;
   margin-top: 20px;
-  justify-content: space-between;
+  height: 400px;
 }
 .event-news .dark-mode {
   background-color: #484454;
