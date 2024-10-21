@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       document.addEventListener('DOMContentLoaded', () => {
+        const root = document.querySelector(':root');
         const slides = document.querySelectorAll('.carousel-container .news');
         const indicators = document.querySelectorAll('.carousel-container .indicator');
         const prevButton = document.querySelector('.carousel-btn.prev');
@@ -137,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalSlides = slides.length;
         const slideInterval = 3000; // Time in milliseconds (3 seconds)
         let autoSlide;
+        var value ;
       
         function updateIndicators(index) {
           indicators.forEach((indicator, i) => {
@@ -149,7 +151,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       
         function showSlide(index, direction) {
+            
           carouselContainer.setAttribute('data-direction', direction);
+        //   root.style.setProperty('--left', 100)
+          
+          
       
           slides.forEach((slide, i) => {
             if (i === index) {
@@ -161,6 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
               slide.classList.remove('active', 'exit');
             }
+           
           });
       
           // Update indicators to reflect current slide
@@ -169,11 +176,16 @@ document.addEventListener('DOMContentLoaded', function() {
       
         function nextSlide() {
           currentSlide = (currentSlide + 1) % totalSlides; // Go to the next slide
+          root.style.setProperty('--left', '100%')
+          value = '-100%';
           showSlide(currentSlide, 'next');
+
         }
       
         function prevSlide() {
           currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // Go to the previous slide
+          root.style.setProperty('--left', '-100%')
+          value = '100%'
           showSlide(currentSlide, 'prev');
         }
       
@@ -181,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlide(currentSlide, 'next');
       
         // Auto-slide every few seconds
+        clearInterval(autoSlide)
         autoSlide = setInterval(nextSlide, slideInterval);
       
         // Event listeners for the buttons
@@ -193,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         prevButton.addEventListener('click', () => {
           clearInterval(autoSlide);
           prevSlide();
-          autoSlide = setInterval(nextSlide, slideInterval);
+          autoSlide = setInterval(prevSlide, slideInterval);
         });
       
         // Add click event to indicators for manual selection
